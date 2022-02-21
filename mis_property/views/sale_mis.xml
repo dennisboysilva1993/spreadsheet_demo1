@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem id="property_sale_mis_menu_root"
+                  name="Property Sale - MIS"
+                  web_icon="mis_property,static/description/icon.jpg"
+                  sequence="7"/>
+
+        <menuitem id="property_mis_raw_menu_categ" parent="property_sale_mis_menu_root" name="Raw Data" sequence="1"/>
+        <menuitem id="property_mis_report_menu_categ" parent="property_sale_mis_menu_root" name="Reports" sequence="2"/>
+
+        <record id="property_sale_mis_view_tree" model="ir.ui.view">
+            <field name="name">property.sale.mis.tree</field>
+            <field name="model">property.sale.mis</field>
+            <field name="arch" type="xml">
+                <tree string="Sale MIS Tree" sample="1" multi_edit="1">
+                    <field name="company_group" optional="show"/>
+                    <field name="class_price" optional="show"/>
+                    <field name="rs_date"/>
+                    <field name="rs_year" optional="hide"/>
+                    <field name="rs_month" optional="hide"/>
+                    <field name="so_type" optional="hide"/>
+                    <field name="name"/>
+                    <field name="customer_name"/>
+                    <field name="dp_percent" optional="show"/>
+                    <field name="dp_terms" optional="show"/>
+                    <field name="full_dp_schedule_date" optional="show"/>
+                    <field name="actual_full_dp_date" optional="hide"/>
+                    <field name="tcp" optional="show" sum="total"/>
+                    <field name="tcp_m" optional="hide" sum="total"/>
+                    <field name="tcp_sqm" optional="hide" sum="total"/>
+                    <field name="tcp_sqm_new" optional="hide" sum="total"/>
+                    <field name="ntcp" optional="show" sum="total"/>
+                    <field name="ntcp_m" optional="hide" sum="total"/>
+                    <field name="mcc" optional="show" sum="total"/>
+                    <field name="vat" optional="show" sum="total"/>
+                    <field name="financing_type" optional="show"/>
+                    <field name="dp_amount" optional="show"/>
+                    <field name="la_amount" optional="show"/>
+                    <field name="brand" optional="show"/>
+                    <field name="brand_group" optional="hide"/>
+                    <field name="division_group" optional="hide"/>
+                    <field name="sub_division" optional="hide"/>
+                    <field name="be_code" optional="hide"/>
+                    <field name="project_name" optional="show"/>
+                    <field name="block_lot" optional="show"/>
+                    <field name="unit_type" optional="hide"/>
+                    <field name="house_status" optional="show"/>
+                    <field name="house_model" optional="show"/>
+                    <field name="lot_area" optional="show" sum="total"/>
+                    <field name="floor_area" optional="show" sum="total"/>
+                    <field name="house_series" optional="hide"/>
+                    <field name="count_number" optional="hide"/>
+                    <field name="condo_cost" optional="hide" sum="total"/>
+                    <field name="island" optional="hide"/>
+                    <field name="cluster_i" optional="hide"/>
+                    <field name="cluster_ii" optional="hide"/>
+                    <field name="cluster_iii" optional="hide"/>
+                    <field name="region" optional="hide"/>
+                    <field name="province" optional="hide"/>
+                    <field name="city" optional="hide"/>
+                    <field name="legal_class_city" optional="hide"/>
+                    <field name="city_class" optional="hide"/>
+                    <field name="group_a" optional="hide"/>
+                    <field name="group_b" optional="hide"/>
+                    <field name="qtr_reporting" optional="hide"/>
+                    <field name="grouping_new" optional="hide"/>
+                    <field name="condo_class" optional="hide"/>
+                    <field name="condo_category" optional="hide"/>
+                    <field name="x_bool" optional="hide"/>
+                    <field name="employment" optional="hide"/>
+                    <field name="house_ncp" optional="hide" sum="total"/>
+                    <field name="house_ncp_m" optional="hide" sum="total"/>
+                    <field name="lot_ncp" optional="hide" sum="total"/>
+                    <field name="lot_ncp_m" optional="hide" sum="total"/>
+                    <field name="house_tcp" optional="hide" sum="total"/>
+                    <field name="house_tcp_m" optional="hide" sum="total"/>
+                    <field name="lot_tcp" optional="hide" sum="total"/>
+                    <field name="lot_tcp_m" optional="hide" sum="total"/>
+                    <field name="lot_tcp_sqm" optional="hide" sum="total"/>
+                    <field name="house_tcp" optional="hide" sum="total"/>
+                    <field name="house_tcp_m" optional="hide" sum="total"/>
+                    <field name="house_tcp_sqm" optional="hide" sum="total"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="property_sale_mis_view_pivot" model="ir.ui.view">
+            <field name="name">property.sale.mis.pivot</field>
+            <field name="model">property.sale.mis</field>
+            <field name="arch" type="xml">
+                <pivot string="Sale MIS Pivot">
+                    <field name="company_group" type="row"/>
+                    <field name="brand_group" type="row"/>
+                    <field name="brand" type="row"/>
+                    <field name="sub_division" type="row"/>
+                    <field name="financing_type" type="row"/>
+                    <field name="rs_date" interval="quarter" type="col"/>
+                    <field name="dp_percent" type="measure" widget="percentage"/>
+                    <field name="dp_terms" type="measure"/>
+                    <field name="tcp" type="measure"/>
+                    <field name="tcp_sqm" type="measure"/>
+                    <field name="ntcp" type="measure"/>
+                    <field name="mcc" type="measure"/>
+                    <field name="vat" type="measure"/>
+                    <field name="dp_amount" type="measure"/>
+                    <field name="la_amount" type="measure"/>
+                    <field name="house_ncp" type="measure"/>
+                    <field name="lot_ncp" type="measure"/>
+                    <field name="house_tcp" type="measure"/>
+                    <field name="lot_tcp" type="measure"/>
+                    <field name="lot_tcp_sqm" type="measure"/>
+                    <field name="house_tcp_sqm" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="property_sale_mis_view_filter" model="ir.ui.view">
+            <field name="name">property.sale.mis.filter</field>
+            <field name="model">property.sale.mis</field>
+            <field name="arch" type="xml">
+                <search string="Property Detail filter">
+                    <field name="name"/>
+                    <field name="customer_name"/>
+                    <field name="be_code"/>
+                    <field name="project_name"/>
+                    <field name="company_group"/>
+                    <field name="financing_type"/>
+                    <field name="brand"/>
+                    <field name="brand_group"/>
+                    <field name="sub_division"/>
+                    <field name="block_lot"/>
+                    <field name="unit_type"/>
+                    <field name="house_status"/>
+                    <field name="house_model"/>
+                    <field name="employment"/>
+                    <filter name="rs_date" date="rs_date" string="RS Date"/>
+                    <filter name="full_dp_schedule_date" date="full_dp_schedule_date" string="Full DP (Schedule Date)"/>
+                    <filter name="actual_full_dp_date" date="actual_full_dp_date" string="Full DP (Actual Date)"/>
+                    <group expand="0" string="Group By">
+                        <filter name="group_financing_type" string="Financing Type" domain="[]"
+                                context="{'group_by': 'financing_type'}"/>
+                        <filter name="group_brand" string="Brand" domain="[]"
+                                context="{'group_by': 'brand'}"/>
+                        <filter name="group_project_name" string="Project" domain="[]"
+                                context="{'group_by': 'project_name'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="property_sale_mis_raw_action_form" model="ir.actions.act_window">
+            <field name="name">SO Pricing</field>
+            <field name="res_model">property.sale.mis</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_property_sale_mis_raw_action_form" parent="property_mis_raw_menu_categ"
+                  action="property_sale_mis_raw_action_form" sequence="1"/>
+
+        <record id="property_sale_mis_pivot_action_form" model="ir.actions.act_window">
+            <field name="name">SO Pricing</field>
+            <field name="res_model">property.sale.mis</field>
+            <field name="view_mode">pivot</field>
+        </record>
+
+        <menuitem id="menu_property_sale_mis_pivot_action_form" parent="property_mis_report_menu_categ"
+                  action="property_sale_mis_pivot_action_form" sequence="1"/>
+
+    </data>
+</odoo>

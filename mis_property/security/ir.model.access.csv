@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+all_property_sale_mis_user,all_property_sale_mis_access,model_property_sale_mis,,1,1,1,1
